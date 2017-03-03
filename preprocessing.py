@@ -190,6 +190,12 @@ def zero_center(image):
 #plot_3d(segmented_lungs_fill, 0)
 #plot_3d(segmented_lungs_fill - segmented_lungs, 0)
 
-
+# run
+for patient in patients:
+    load_patient = load_scan(INPUT_FOLDER + patient)
+    patient_pixels = get_pixels_hu(load_patient)
+    pix_resampled, spacing = resample(patient_pixels, load_patient, [1,1,1])
+    segmented_lungs = segment_lung_mask(pix_resampled, False)
+    segmented_lungs_fill = segment_lung_mask(pix_resampled, True)
 
 
