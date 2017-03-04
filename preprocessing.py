@@ -197,5 +197,9 @@ for patient in patients:
     pix_resampled, spacing = resample(patient_pixels, load_patient, [1,1,1])
     segmented_lungs = segment_lung_mask(pix_resampled, False)
     segmented_lungs_fill = segment_lung_mask(pix_resampled, True)
+    
+    #save segmented lungs (fille dnad unfilled) in new folders
+    np.save(r"./Processed_Unfilled/%s.npy" % patient, segmented_lungs)
+    np.save(r"./Processed_Filled/%s.npy" % patient, segmented_lungs_fill)
 
 
